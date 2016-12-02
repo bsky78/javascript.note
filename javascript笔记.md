@@ -6,7 +6,7 @@
 
 *****
 
-####### t1
+###### t1
 
 # js中通过class来获取元素，不用jquery  
 
@@ -43,7 +43,7 @@ function getClassName(obj ,sNmae){
 
 ***
 
-####### t2  
+###### t2  
 # offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？
 
 解释下：  
@@ -137,7 +137,7 @@ function getClassName(obj ,sNmae){
 </body>
 ```  
 
-####### t3  
+###### t3  
 #jQuery中ready和onload的区别
 
 页面加载有两种情况  
