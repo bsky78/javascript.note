@@ -55,30 +55,30 @@ function getClassName(obj ,sNmae){
 
 > **包含元素宽高、内边距和边框** 不包括外边距
 >> js：
->>> `divObj.offsetWidth` 
->>>`divObj.offsetHeight`
+>>> `divObj.offsetWidth`   
+>>> `divObj.offsetHeight`  
 >
 >> jq：
->>>`$(divObj).outerWidth(true)` 
->>> `$(divObj). outerHeight(false)`
+>>> `$(divObj).outerWidth(true)`   
+>>> `$(divObj). outerHeight(false)`  
 > 
 > **包括元素宽高、内边距** 不包括边框、外边距
 >> js：
->>>`divObj.clientWidth`
->>>`divObj.clientHeight`
+>>> `divObj.clientWidth`  
+>>> `divObj.clientHeight`  
 >
 >> jq：
->>> `$(divObj).innerWidth()`
->>>  `$(divObj).innerHeight()`
+>>> `$(divObj).innerWidth()`  
+>>> `$(divObj).innerHeight()`  
 > 
 > **包括元素宽高** 不包括边框、内边距、外边距
 >> js： 
->>> `divObj.style.width`
->>> `divObj.style.height`
+>>> `divObj.style.width`  
+>>> `divObj.style.height`  
 >
 >> jq：
->>> `$(divObj).width();`
->>> `$(divObj).height();`
+>>> `$(divObj).width();`  
+>>> `$(divObj).height();`  
 > 
 > **包括元素宽高、内边距、溢出宽高** 不包括边框、外边距 *无溢出时与clientWidth一致*
 >>js 
@@ -169,6 +169,7 @@ $().ready(function(){
 })
 ```
 
+##### onload写法  
 需要加载图片等资源后再执行：  
 ```javascript
 // 这种方式可以存在多个，会按顺序执行
