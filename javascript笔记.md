@@ -1,16 +1,20 @@
 # JavaScript笔记
 目录
-* [js中通过class来获取元素，不用jquery](#js中通过class来获取元素，不用jquery)
-* [offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？](#offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？)
-* [jQuery中ready和onload的区别](#jQuery中ready和onload的区别)
-***
-> # js中通过class来获取元素，不用jquery
+* [js中通过class来获取元素，不用jquery](#t1)
+* [offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？](#t2)
+* [jQuery中ready和onload的区别](#t3)
+
+*****
+
+####### t1
+
+# js中通过class来获取元素，不用jquery  
 
 ```html
 <div class="aa"> 1 </div>
 <div class="bb"> 2 </div>
 ```
-解答:  
+
 非IE6,7,8可以直接用自带的属性 getElementByClassName，如果考虑兼容，需要自己写
 
 ```javascript
@@ -33,13 +37,16 @@ function getClassName(obj ,sNmae){
         }
     }
 }
-```  
+```
+
 大概思路，是将你要获取class元素父级下的所有元素都取出来，再循环查找className，满足的元素存到数组中，然后返回。
 
 ***
-> # offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？
 
-解释下：
+####### t2  
+# offsetWidth、clientWidth、width、scrollWidth区别级与jQuery获得的方式是怎样的？
+
+解释下：  
 * 内边距：padding
 * 外边距：margin
 * 边框：border
@@ -78,39 +85,39 @@ function getClassName(obj ,sNmae){
 >>> divObj.scrollWidth;
 >>> divObj.scrollHeight;
 
+```javascript
+<body style="border:1px solid #ccc">
+        <div id="div" style="width:100px;height:80px;left:10px;top:8px;position:relative;border:1px solid #ccc;margin:20px 10px;padding:7px 6px;">
+        </div>
 
-    <body style="border:1px solid #ccc">
-            <div id="div" style="width:100px;height:80px;left:10px;top:8px;position:relative;border:1px solid #ccc;margin:20px 10px;padding:7px 6px;">
-            </div>
-    
-        <script type="text/javascript">
-            var divObj = document.getElementById("div");
-    
-            var dOffsetWidth = divObj.offsetWidth;//返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）
-            var $dOffsetWidth = $(divObj).outerWidth(false);//参数为true，包括外边距
-    
-            var dOffsetHeight = divObj.offsetHeight;//返回元素的高度（包括元素高度、内边距和边框，不包括外边距）
-            var $dOffsetHeight = $(divObj).outerHeight(false);//参数为true，包括外边距
-    
-    
-            var dClientWidth = divObj.clientWidth;//返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）
-            var $dClientWidth = $(divObj).innerWidth();
-    
-            var dClientHeight = divObj.clientHeight;//返回元素的高度（包括元素高度、内边距，不包括边框和外边距）
-            var $dClientHeight = $(divObj).innerHeight();
-    
-            var dWidth = divObj.style.width;//返回元素的宽度（包括元素宽度，不包括内边距、边框和外边距）
-            var $dWidth = $(divObj).width();//width(val)设置宽
-    
-            var dHeight = divObj.style.height;//返回元素的高度（包括元素高度，不包括内边距、边框和外边距）
-            var $dHeight = $(divObj).height();//height(val)设置高
-    
-            var dscrollWidth = divObj.scrollWidth;//返回元素的宽度（包括元素宽度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientWidth相同
-            var dscrollHeight = divObj.scrollHeight;//返回元素的高度（包括元素高度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientHeight相同
-    
-    
-            console.log("dOffsetWidth:"+dOffsetWidth+",dOffsetHeight:"+dOffsetHeight+",dClientWidth:"+dClientWidth+",dClientHeight:"+dClientHeight+",dWidth:"+dWidth+",dHeight:"+dHeight+",dscrollWidth:"+dscrollWidth+",dscrollHeight:"+dscrollHeight);
-            console.log("$dOffsetWidth:"+$dOffsetWidth+",$dOffsetHeight:"+$dOffsetHeight+",$dClientWidth:"+$dClientWidth+",$dClientHeight:"+$dClientHeight+",$dWidth:"+$dWidth+",$dHeight:"+$dHeight);
+    <script type="text/javascript">
+        var divObj = document.getElementById("div");
+
+        var dOffsetWidth = divObj.offsetWidth;//返回元素的宽度（包括元素宽度、内边距和边框，不包括外边距）
+        var $dOffsetWidth = $(divObj).outerWidth(false);//参数为true，包括外边距
+
+        var dOffsetHeight = divObj.offsetHeight;//返回元素的高度（包括元素高度、内边距和边框，不包括外边距）
+        var $dOffsetHeight = $(divObj).outerHeight(false);//参数为true，包括外边距
+
+
+        var dClientWidth = divObj.clientWidth;//返回元素的宽度（包括元素宽度、内边距，不包括边框和外边距）
+        var $dClientWidth = $(divObj).innerWidth();
+
+        var dClientHeight = divObj.clientHeight;//返回元素的高度（包括元素高度、内边距，不包括边框和外边距）
+        var $dClientHeight = $(divObj).innerHeight();
+
+        var dWidth = divObj.style.width;//返回元素的宽度（包括元素宽度，不包括内边距、边框和外边距）
+        var $dWidth = $(divObj).width();//width(val)设置宽
+
+        var dHeight = divObj.style.height;//返回元素的高度（包括元素高度，不包括内边距、边框和外边距）
+        var $dHeight = $(divObj).height();//height(val)设置高
+
+        var dscrollWidth = divObj.scrollWidth;//返回元素的宽度（包括元素宽度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientWidth相同
+        var dscrollHeight = divObj.scrollHeight;//返回元素的高度（包括元素高度、内边距和溢出尺寸，不包括边框和外边距），无溢出的情况，与clientHeight相同
+
+
+        console.log("dOffsetWidth:"+dOffsetWidth+",dOffsetHeight:"+dOffsetHeight+",dClientWidth:"+dClientWidth+",dClientHeight:"+dClientHeight+",dWidth:"+dWidth+",dHeight:"+dHeight+",dscrollWidth:"+dscrollWidth+",dscrollHeight:"+dscrollHeight);
+        console.log("$dOffsetWidth:"+$dOffsetWidth+",$dOffsetHeight:"+$dOffsetHeight+",$dClientWidth:"+$dClientWidth+",$dClientHeight:"+$dClientHeight+",$dWidth:"+$dWidth+",$dHeight:"+$dHeight);
     
             /*
                 注意：offsetWidth(offsetHeight)与style.width(style.height)的区别
@@ -128,9 +135,10 @@ function getClassName(obj ,sNmae){
             */
         </script>
 </body>
+```  
 
-
-> #jQuery中ready和onload的区别
+####### t3  
+#jQuery中ready和onload的区别
 
 页面加载有两种情况  
 
@@ -140,7 +148,7 @@ function getClassName(obj ,sNmae){
 ##### ready写法  
 第一种通常写法：
 
-```jquery
+```javascript
 $(function(){
     // do something...
 })
@@ -148,14 +156,14 @@ $(function(){
 
 第二种写法等价于第一种：
 
-```jquery
+```javascript
 $(document).ready(function(){
     // do something...
 })
 ```
 
 也等价于下面第三种写法,jquery默认参数为:`document`：  
-```jquery
+```javascript
 $().ready(function(){
     // do something...
 })
@@ -180,7 +188,7 @@ window.onload=function(){
 上面代码会在页面内容全部加载完后按顺序依次执行
 
 对应代码：  
-```jquery
+```javascript
 $(widnow).unload(function(){
     // do something...
 })
@@ -188,7 +196,7 @@ $(widnow).unload(function(){
 上述代码会在页面关闭时执行
 
 在所有DOM加载之前执行js代码  
-```jquery
+```javascript
 (function(){
     // do something...
 })(jquery)
